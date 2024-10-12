@@ -1,0 +1,33 @@
+version: 0.2
+
+phases:
+  install:
+    #Si utiliza la imagen estándar de Ubuntu 2.0 o posterior, debe especificar las versiones del tiempo de ejecución.
+    #Si especifica las versiones del tiempo de ejecución y utiliza una imagen que no sea la estándar de Ubuntu 2.0, se produce un error en la compilación.
+    runtime-versions:
+      java: corretto17
+
+  build:
+    commands:
+      - mvn compile
+      - mvn test
+      - mvn install
+      # - command
+  post_build:
+    commands:
+      - mvn package
+      - mv target/protobootapp-0.0.1-SNAPSHOT.jar root.jar
+      # - command
+reports:
+  jacoco-report:
+    files:
+      - 'target/site/jacoco/jacoco.xml'
+    file-format: 'JACOCOXML'
+  junit-report:
+    files:
+      - 'target/surefire-reports/*.xml'
+    file-format: 'JUNITXML'
+
+artifacts:
+  files:
+    - root.jar
