@@ -12,5 +12,5 @@ public class Calculadora {
     }
 }
 
-//No fallo
+//fallos
 
