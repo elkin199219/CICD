@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy WAR app to Azure Web App - practica-Java-eafit
+name: Build and deploy JAR app to Azure Web App - practica-Java-eafit
 
 on:
   push:
@@ -20,15 +20,15 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '17'
-          distribution: 'adopt'
+
       - name: Build with Maven
-        run: mvn clean install -f pom.xml
+        run: mvn clean install
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: java-app
-          path: 'target/protobootapp-0.0.1-SNAPSHOT.jar'
+          path: '${{ github.workspace }}/target/*.jar'
 
   deploy:
     runs-on: ubuntu-latest
@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'practica-Java-eafit'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BB37744B335F47A08C672EFCF0C4629B }}
-          package: 'java-app/protobootapp-0.0.1-SNAPSHOT.jar'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7E22F9FA5841422091EF4A5883400065 }}
+          package: '*.jar'
