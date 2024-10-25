@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: java-app
-          path: 'target/*.jar'
+          path: 'target/protobootapp-0.0.1-SNAPSHOT.jar'
 
   deploy:
     runs-on: ubuntu-latest
@@ -50,4 +50,4 @@ jobs:
           app-name: 'practica-Java-eafit'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D7602F1174454DEFBE26BF804A25050A }}
-          package: 'target/*.jar'
+          package: 'target/protobootapp-0.0.1-SNAPSHOT.jar'
