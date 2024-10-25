@@ -50,4 +50,4 @@ jobs:
           app-name: 'practica-Java-eafit'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BB37744B335F47A08C672EFCF0C4629B }}
-          package: '*.war'
+          package: 'java-app/protobootapp-0.0.1-SNAPSHOT.jar'
